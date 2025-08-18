@@ -1,0 +1,30 @@
+﻿@using Projeto.Data.Entities
+@{ Usuario u = (Usuario)Session["usuariologado"]; }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Projeto Cadastro de Entretenimento</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/IndexEstilo.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="well">
+        <div class="projeto">
+            <h2><span>@u.Nome</span></h2>
+        </div>
+        <div class="logout">
+            @Html.ActionLink("Sair do Sistema", "Logout", "Usuario")
+        </div>
+    </div>
+
+    @RenderSection("subtitulo", required: false)
+    @RenderBody()
+
+    <script src="~/Scripts/jquery-3.7.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/modalBiblioteca.js"></script>
+
+</body>
+</html>

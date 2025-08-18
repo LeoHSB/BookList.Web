@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Projeto.Web.Models.UsuarioModelCadastro
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastro</title>
+</head>
+<body>
+    <div class="container">
+        <h3>Cadastro de Usuário</h3>
+        <br />
+
+        @using (Html.BeginForm("CadastrarUsuario", "Usuario", FormMethod.Post))
+        {
+            <div class="validacaoSumario">
+                @Html.ValidationSummary()
+            </div>
+
+            <div>
+                @Html.LabelFor(u => u.Nome)
+                @Html.TextBoxFor(u => u.Nome)
+            </div>
+
+            <div>
+                @Html.LabelFor(u => u.Email)
+                @Html.TextBoxFor(u => u.Email)
+            </div>
+
+            <div>
+                @Html.LabelFor(u => u.Senha)
+                @Html.PasswordFor(u => u.Senha)
+            </div>
+
+            <div class="requisitos">
+                <strong>Requisitos para a senha:</strong>
+                <ul>
+                    <li>A senha deve ter entre 6 e 40 caracteres.</li>
+                    <li>A senha não pode ter espaços em branco.</li>
+                </ul>
+            </div>
+
+            <div>
+                @Html.LabelFor(u => u.SenhaConfirm)
+                @Html.PasswordFor(u => u.SenhaConfirm)
+            </div>
+            <br />
+
+            <div class="botoes">
+                <input type="submit" value="Cadastrar" />
+                <a href="@Url.Action("Login", "Usuario")" class="botao">Logar</a>
+            </div>
+            <br />
+            <div>
+                <p>@ViewBag.Mensagem</p>
+            </div>
+        }
+    </div>
+</body>

@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Projeto.Web.Models.UsuarioModelLogin
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastro</title>
+</head>
+<body>
+    <div class="container">
+        <h3>Login de Usuarios</h3>
+        <br />
+        @using (Html.BeginForm("AutenticarUsuario", "Usuario", FormMethod.Post))
+        {
+            @Html.LabelFor(u => u.Login)
+            @Html.TextBoxFor(u => u.Login)
+            @Html.ValidationMessageFor(u => u.Login)
+            <br />
+            @Html.LabelFor(u => u.Senha)
+            @Html.PasswordFor(u => u.Senha)
+            @Html.ValidationMessageFor(u => u.Senha)
+            <br />
+            <div class="botoes">
+                <input type="submit" value="Entrar" />
+                <a href="@Url.Action("Cadastro", "Usuario")" class="botao">Cadastrar-se</a>
+            </div>
+            <br />
+            <div><p>@ViewBag.Mensagem</p></div>
+        }
+    </div>
+</body>
