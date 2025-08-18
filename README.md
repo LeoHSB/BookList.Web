@@ -9,7 +9,7 @@ Visual Studio: Recomenda-se a versão Visual Studio 2022 ou superior, com a carg
 1. Clonar o Repositório
 Abra o seu terminal (como Git Bash, Prompt de Comando ou PowerShell).
 Navegue até a pasta onde você deseja armazenar o projeto localmente. Por exemplo: cd C:\Users\SeuUsuario\source\repos
-Execute o comando git clone seguido da URL do repositório: git clone [https://github.com/SeuUsuario/NomeDoSeuRepositorio.git](https://github.com/LeoHSB/BookList.Web.git)
+Execute o comando git clone seguido da URL do repositório: git clone https://github.com/LeoHSB/BookList.Web.git
 
 2. Abrir o Projeto no Visual Studio
 Abra o Visual Studio.
