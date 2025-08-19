@@ -1,0 +1,26 @@
+﻿.biblioteca {
+    border: none;
+    background-color: transparent;
+    border-radius: 22px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #212529;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 12px;
+}
+
+    .biblioteca:hover {
+        background-color: #F2F2F2;
+        transform: scale(1.01);
+    }
+
+    .biblioteca:active {
+        background-color: #EFE8E4;
+        transform: scale(0.98);
+    }
+
+.badge-livros {
+    background-color: #8C7058;
+    color: white;
+    font-weight: 500;
+}

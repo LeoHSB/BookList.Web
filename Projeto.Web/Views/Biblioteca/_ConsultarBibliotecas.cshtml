@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Projeto.Web.Models.BibliotecaModelConsulta>
+<link href="~/Content/biblioteca-consulta-estilo.css" rel="stylesheet" />
+
+<ul style="list-style: none; padding-left: 0; margin-left: 0;">
+    @foreach (var biblioteca in Model)
+    {
+        <li class="list-group-item p-0">
+            <button class="biblioteca w-100 d-flex justify-content-between align-items-center px-3 py-2">
+                @biblioteca.Nome
+                <span class="badge badge-livros rounded-pill">@biblioteca.QuantidadeLivros</span>
+                @*<a href="@Url.Action("ExcluirBiblioteca", new { id = biblioteca.Id })" onclick="return confirm('Tem certeza que deseja excluir esta biblioteca?');">&#x1F5D1;</a>*@
+            </button>
+        </li>
+    }
+</ul>

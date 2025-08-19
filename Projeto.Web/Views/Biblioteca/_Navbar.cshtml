@@ -1,31 +1,18 @@
-﻿@{
-    var currentPath = ViewContext.RouteData.Values["controller"]?.ToString().ToLower() + "/" + ViewContext.RouteData.Values["action"]?.ToString().ToLower();
-}
+﻿@model Projeto.Web.Models.BibliotecaModelCadastro
+
 <div class="side-nav">
     <h2 class="side-nav-title">Minhas Listas</h2>
     <br />
-    <div class="mb-3">
+    <div class="mb-3" style="text-align:center">
         <button class="botao" data-bs-toggle="modal" data-bs-target="#modalCadastroBiblioteca">
             <i class="fas fa-plus"></i> + Nova Biblioteca
         </button>
     </div>
-
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link @(currentPath == "livros/lido" ? "active" : "")" href="@Url.Action("Lido", "Livros")">
-                Lido
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link @(currentPath == "livros/paracomprar" ? "active" : "")" href="@Url.Action("ParaComprar", "Livros")">
-                Para Comprar
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link @(currentPath == "livros/listadesejos" ? "active" : "")" href="@Url.Action("ListaDesejos", "Livros")">
-                Lista de Desejos
-            </a>
-        </li>
-    </ul>
+    <br />
+    <div id="lista-bibliotecas">
+        @{ Html.RenderAction("ConsultarBibliotecas", "Biblioteca"); }
+    </div>
 </div>
-@Html.Partial("_ModalCadastroBiblioteca", new Projeto.Web.Models.BibliotecaModelCadastro())
+<div>
+    @Html.Partial("_ModalCadastroBiblioteca", new Projeto.Web.Models.BibliotecaModelCadastro())
+</div>

@@ -56,6 +56,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -136,6 +137,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\biblioteca-consulta-estilo.css" />
     <Content Include="Content\LoginCadastro.css" />
     <Content Include="Content\IndexEstilo.css" />
     <Content Include="favicon.ico" />
@@ -201,6 +203,7 @@
     <Content Include="Views\Biblioteca\_Navbar.cshtml" />
     <Content Include="Views\Shared\_LayoutLogado.cshtml" />
     <Content Include="Views\Biblioteca\_ModalCadastroBiblioteca.cshtml" />
+    <Content Include="Views\Biblioteca\_ConsultarBibliotecas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

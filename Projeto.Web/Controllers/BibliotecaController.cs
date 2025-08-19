@@ -1,8 +1,10 @@
-﻿using Projeto.Data.Entities;
+﻿using Projeto.Data.Dto;
+using Projeto.Data.Entities;
 using Projeto.Data.Persistence;
 using Projeto.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Projeto.Web.Controllers
@@ -13,10 +15,16 @@ namespace Projeto.Web.Controllers
         {
             return View();
         }
+        public PartialViewResult ModalCadastroBiblioteca()
+        {
+            return PartialView("_ModalCadastroBiblioteca", new BibliotecaModelCadastro());
+        }
+
         [HttpPost]
         public JsonResult CadastrarBibliotecaAjax(BibliotecaModelCadastro model)
         {
-            if (Session["usuariologado"] == null)
+            var usuario = (Usuario)Session["usuariologado"];
+            if (usuario == null)
             {
                 return Json(new
                 {
@@ -27,14 +35,9 @@ namespace Projeto.Web.Controllers
 
             if (!ModelState.IsValid)
             {
-                var erros = new List<string>();
-                foreach (var modelError in ModelState.Values)
-                {
-                    foreach (var error in modelError.Errors)
-                    {
-                        erros.Add(error.ErrorMessage);
-                    }
-                }
+                var erros = ModelState.Values.SelectMany(v => v.Errors)
+                                             .Select(e => e.ErrorMessage)
+                                             .ToList();
                 return Json(new
                 {
                     success = false,
@@ -44,13 +47,24 @@ namespace Projeto.Web.Controllers
 
             try
             {
+                BibliotecaData bibliotecaData = new BibliotecaData();
+
+                var bibliotecasUsuario = bibliotecaData.BuscarBibliotecasPorId(usuario.Id);
+                if (bibliotecasUsuario.Count >= 10)
+                {
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Você já possui o limite máximo de 10 bibliotecas."
+                    });
+                }
+
                 Biblioteca biblioteca = new Biblioteca()
                 {
                     Nome = model.Nome,
-                    Usuario = (Usuario)Session["usuariologado"]
+                    Usuario = usuario
                 };
 
-                BibliotecaData bibliotecaData = new BibliotecaData();
                 bibliotecaData.Insert(biblioteca);
 
                 return Json(new
@@ -68,9 +82,41 @@ namespace Projeto.Web.Controllers
                 });
             }
         }
-        public PartialViewResult ModalCadastroBiblioteca()
+
+        [HttpGet]
+        public PartialViewResult ConsultarBibliotecas()
         {
-            return PartialView("_ModalCadastroBiblioteca", new BibliotecaModelCadastro());
+            var usuario = (Usuario)Session["usuariologado"];
+            var usuarioId = usuario.Id;
+
+            var bibliotecaData = new BibliotecaData();
+            var bibliotecas = bibliotecaData.BuscarBibliotecasPorId(usuarioId);
+
+            var model = bibliotecas.Select(b => new BibliotecaModelConsulta
+            {
+                Id = b.Id,
+                Nome = b.Nome,
+                QuantidadeLivros = b.Livro.Count()
+            }).ToList();
+
+            return PartialView("_ConsultarBibliotecas",model);
+        }
+
+        [HttpGet]
+        public ActionResult ExcluirBiblioteca(int id)
+        {
+            try
+            {
+                BibliotecaData bd = new BibliotecaData();
+                Biblioteca b = bd.Find(id);
+                bd.Delete(b);
+                ViewBag.Mensagem = "Categoria excluida com sucesso.";
+            }
+            catch (Exception e)
+            {
+                ViewBag.Mensagem = e.Message;
+            }
+            return View("Index");
         }
 
     }

@@ -10,9 +10,9 @@ namespace Projeto.Data.Mapping
             Table("Biblioteca");
             Id(b => b.Id, "Id").GeneratedBy.Identity();
 
-            Map(b => b.Nome, "Nome").Length(60).Not.Nullable();
+            Map(b => b.Nome, "Nome").Length(14).Not.Nullable();
             References(b => b.Usuario, "IdUsuario").Not.Nullable();
-            HasMany(b => b.Livro).KeyColumn("IdBiblioteca").Inverse();
+            HasMany(b => b.Livro).KeyColumn("IdBiblioteca").Inverse().Cascade.Delete();
 
         }
     }
