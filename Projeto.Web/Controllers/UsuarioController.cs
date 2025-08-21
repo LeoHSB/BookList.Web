@@ -5,7 +5,6 @@ using Projeto.Web.Models;
 using System;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 namespace Projeto.Web.Controllers

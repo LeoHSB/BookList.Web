@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Projeto.Web.Validators;
 namespace Projeto.Web.Models
 
 {

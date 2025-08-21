@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Projeto.Web.Validators;
-namespace Projeto.Web.Models
+﻿namespace Projeto.Web.Models
 
 {
     public class LivroModelConsulta

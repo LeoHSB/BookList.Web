@@ -81,7 +81,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\GoogleBooksService.cs" />
     <Compile Include="Entidades\Biblioteca.cs" />
     <Compile Include="Entidades\Livro.cs" />
     <Compile Include="Mapeamento\BibliotecaMap.cs" />

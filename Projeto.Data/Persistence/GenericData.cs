@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NHibernate;
-using NHibernate.Linq;
 using Projeto.Data.Util;
 namespace Projeto.Data.Generics
 {
@@ -52,10 +48,8 @@ namespace Projeto.Data.Generics
         {
             using (ISession s = HibernateUtil.GetSessionFactory().OpenSession())
             {
-                //LINQ - Language Integrated Query
                 var query = from obj in s.Query<T>()
                             select obj;
-                //retornar os dados...
                 return query.ToList();
             }
         }

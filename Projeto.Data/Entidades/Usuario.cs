@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 namespace Projeto.Data.Entities
 {
-    /// Classe de entidade
     public class Usuario
     {
         public virtual int Id { get; set; }

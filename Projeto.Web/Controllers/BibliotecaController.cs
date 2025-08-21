@@ -1,9 +1,7 @@
-﻿using Projeto.Data.Dto;
-using Projeto.Data.Entities;
+﻿using Projeto.Data.Entities;
 using Projeto.Data.Persistence;
 using Projeto.Web.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 

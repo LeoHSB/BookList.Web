@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Projeto.Web.Validators;
-using System.Linq;
 namespace Projeto.Web.Models
 {
     public class UsuarioModelLogin

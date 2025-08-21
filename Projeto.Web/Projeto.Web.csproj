@@ -156,11 +156,11 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\biblioteca-consulta-estilo.css" />
-    <Content Include="Content\ModalChave.css" />
-    <Content Include="Content\PesquisaEstilo.css" />
-    <Content Include="Content\LoginCadastro.css" />
-    <Content Include="Content\IndexEstilo.css" />
-    <Content Include="Content\DropdownEstilo.css" />
+    <Content Include="Content\modal-chave.css" />
+    <Content Include="Content\pesquisa-estilo.css" />
+    <Content Include="Content\login-cadastro.css" />
+    <Content Include="Content\index-estilo.css" />
+    <Content Include="Content\dropdown-estilo.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -194,7 +194,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
-    <Content Include="Scripts\adicionarChave.js" />
+    <Content Include="Scripts\adicionar-chave.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
@@ -206,7 +206,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modalBiblioteca.js" />
+    <Content Include="Scripts\modal-biblioteca.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
