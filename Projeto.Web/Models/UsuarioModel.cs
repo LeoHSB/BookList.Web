@@ -32,4 +32,12 @@ namespace Projeto.Web.Models
         [Display(Name = "Confirme sua Senha:")]
         public string SenhaConfirm { get; set; }
     }
+
+    public class ChaveApiCadastroModel
+    {
+        public int Id { get; set; }
+
+        [Display(Name = "Insira sua Chave Api da Google Books")]
+        public string ApiKey { get; set; }
+    }
 }

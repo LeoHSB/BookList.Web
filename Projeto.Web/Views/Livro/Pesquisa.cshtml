@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Pesquisar Livros";
+    Layout = "~/Views/Shared/_LayoutLogado.cshtml";
+}
+
+<div class="search-bar">
+    <h2 style="text-align:center">Pesquisar Livros</h2>
+
+    @using (Html.BeginForm("PesquisarLivros", "Livro", FormMethod.Get))
+    {
+        <div class="form-group">
+            <input type="text" name="q" class="form-control" placeholder="Digite título, autor ou ISBN..." />
+        </div>
+
+        if (ViewBag.Mensagem != null)
+        {
+            <div class="alert alert-warning text-center mt-2">
+                @ViewBag.Mensagem
+            </div>
+        }
+
+        <div style="text-align:center">
+            <button type="submit" class="btn btn-primary mt-2">Pesquisar</button>
+        </div>
+    }
+</div>
+
+@if (ViewBag.Resultados != null && ((IEnumerable<dynamic>)ViewBag.Resultados).Any())
+{
+    <div class="row mt-4 resultados-livros">
+        @foreach (var item in ViewBag.Resultados)
+        {
+            <div class="col-6 col-md-3 mb-3">
+                <div class="card">
+                    <img class="card-img-top" src="@(item.volumeInfo.imageLinks != null ? item.volumeInfo.imageLinks.thumbnail : "")" alt="Capa do livro" />
+                    <div class="card-body">
+                        <h5 class="card-title">@item.volumeInfo.title</h5>
+                        <p><strong>Autor:</strong> @(item.volumeInfo.authors != null ? string.Join(", ", item.volumeInfo.authors) : "Desconhecido")</p>
+                        <p><strong>Páginas:</strong> @(item.volumeInfo.pageCount != null ? item.volumeInfo.pageCount.ToString() : "N/A")</p>
+                        <p><strong>Publicado em:</strong> @(item.volumeInfo.publishedDate != null ? item.volumeInfo.publishedDate.ToString() : "N/A")</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

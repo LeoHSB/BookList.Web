@@ -9,6 +9,7 @@ namespace Projeto.Data.Entities
         public virtual string Nome { get; set; }
         public virtual string Email { get; set; }
         public virtual string Senha { get; set; }
+        public virtual string ApiKey { get; set; }
         public virtual DateTime DataCadastro { get; set; }
         public virtual ICollection<Biblioteca> Biblioteca { get; set; }
     }

@@ -1,0 +1,32 @@
+﻿@model Projeto.Web.Models.ChaveApiCadastroModel
+
+<link href="~/Content/ModalChave.css" rel="stylesheet" />
+
+<div class="modal" id="modalCadastroChave" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content p-4">
+            <div class="modal-header">
+                <h5 class="modal-title"style="color:white">Cadastrar / Atualizar Chave API</h5>
+            </div>
+
+            <div class="modal-body">
+                <div id="mensagemCadastro" class="alert mt-2" style="display:@(ViewBag.Mensagem != null ? "block" : "none")">
+                    @ViewBag.Mensagem
+                </div>
+
+                <form id="formCadastroChave">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ApiKey, "Chave API")
+                        @Html.TextBoxFor(m => m.ApiKey, new { @class = "form-control", placeholder = "Digite sua chave API", id = "ApiKey" })
+                        <span class="text-danger" id="erroApiKey"></span>
+                    </div>
+
+                    <div class="form-group mt-3 d-flex justify-content-end gap-2">
+                        <button type="button" class="btn btn-secondary" id="btnCancelarCadastro">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar Chave</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

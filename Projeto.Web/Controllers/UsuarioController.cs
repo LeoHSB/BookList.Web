@@ -1,10 +1,12 @@
-﻿using Projeto.Web.Models;
-using System;
-using System.Web.Mvc;
-using Projeto.Data.Entities;
+﻿using Projeto.Data.Entities;
 using Projeto.Data.Persistence;
 using Projeto.Util;
+using Projeto.Web.Models;
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Web.Mvc;
 using System.Web.Security;
 namespace Projeto.Web.Controllers
 {
@@ -15,10 +17,18 @@ namespace Projeto.Web.Controllers
         {
             return View(); 
         }
+
         public ActionResult Login()
         {
             return View();
         }
+
+        [HttpGet]
+        public PartialViewResult CadastroChave()
+        {
+            return PartialView("_CadastroChave", new ChaveApiCadastroModel());
+        }
+
         [HttpPost]
         public ActionResult AutenticarUsuario(UsuarioModelLogin model)
         {
@@ -83,6 +93,65 @@ namespace Projeto.Web.Controllers
             Session.Remove("usuariologado");
             Session.Abandon();
             return View("Login");
+        }
+
+        [HttpPost]
+        public JsonResult CadastroChave(ChaveApiCadastroModel model)
+        {
+            var resultado = new { sucesso = false, mensagem = "" };
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var usuario = (Usuario)Session["usuariologado"];
+                    if (usuario == null)
+                    {
+                        resultado = new { sucesso = false, mensagem = "Usuário não está logado." };
+                        return Json(resultado);
+                    }
+
+                    string chaveCriptografada = Criptografia.Criptografar(model.ApiKey);
+
+                    string connectionString = ConfigurationManager.ConnectionStrings["banco"].ConnectionString;
+
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        string sql = "UPDATE Usuario SET ApiKey = @ApiKey WHERE Id = @Id";
+
+                        using (SqlCommand cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@ApiKey", chaveCriptografada);
+                            cmd.Parameters.AddWithValue("@Id", usuario.Id);
+
+                            int linhasAfetadas = cmd.ExecuteNonQuery();
+
+                            if (linhasAfetadas > 0)
+                            {
+                                usuario.ApiKey = chaveCriptografada;
+                                Session["usuariologado"] = usuario;
+
+                                resultado = new { sucesso = true, mensagem = "Chave Api " + usuario.Nome + " cadastrada/atualizada com sucesso." };
+                            }
+                            else
+                            {
+                                resultado = new { sucesso = false, mensagem = "Usuário não encontrado no banco." };
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    resultado = new { sucesso = false, mensagem = "Erro: " + e.Message };
+                }
+            }
+            else
+            {
+                resultado = new { sucesso = false, mensagem = "Dados inválidos." };
+            }
+
+            return Json(resultado);
         }
     }
 }

@@ -116,6 +116,22 @@
         background-color: #8C7058;
     }
 
+.btn-menu a {
+    text-align: right;
+    padding: 10px 20px;
+    background-color: #A9886B;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 22px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-menu a:hover {
+        background-color: #8C7058;
+    }
+
 .botao {
     background-color: #A9886B;
     color: white;
@@ -158,4 +174,12 @@
 .modal-footer {
     background-color: #D4C1A9;
     padding: 15px 25px;
+}
+
+.top-buttons {
+    display: flex;
+    justify-content: flex-end; 
+    gap: 15px; 
+    align-items: center; 
+    margin-right: 20px; 
 }

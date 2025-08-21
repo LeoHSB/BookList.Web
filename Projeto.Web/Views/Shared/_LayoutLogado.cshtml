@@ -1,5 +1,6 @@
 ﻿@using Projeto.Data.Entities
 @{ Usuario u = (Usuario)Session["usuariologado"]; }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,23 +9,47 @@
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/IndexEstilo.css" rel="stylesheet" />
+    <link href="~/Content/PesquisaEstilo.css" rel="stylesheet" />
+    <link href="~/Content/DropdownEstilo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
     <div class="well">
         <div class="projeto">
             <h2><span>@u.Nome</span></h2>
         </div>
-        <div class="logout">
-            @Html.ActionLink("Sair do Sistema", "Logout", "Usuario")
+        <div class="top-buttons">
+            <div class="btn-menu dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="btnEngrenagem" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-gear-fill"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="btnEngrenagem">
+                    <li><a class="dropdown-item" href="@Url.Action("Index", "Biblioteca")">Minhas Bibliotecas</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("Pesquisa", "Livro")">Pesquisar Livros</a></li>
+                    <li><a class="dropdown-item" id="btnAbrirCadastroChaveDropdown" href="#">Cadastrar / Atualizar Chave API</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>@Html.ActionLink("Sair do Sistema", "Logout", "Usuario", null, new { @class = "dropdown-item" })</li>
+                </ul>
+            </div>
         </div>
     </div>
+
+
+    <div id="containerModalChave"></div>
 
     @RenderSection("subtitulo", required: false)
     @RenderBody()
 
-    <script src="~/Scripts/jquery-3.7.1.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/modalBiblioteca.js"></script>
 
+    <script src="~/Scripts/jquery-3.7.1.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/modalBiblioteca.js"></script> 
+    <script src="~/Scripts/adicionarChave.js"></script>
+    <script>
+        var urlGetCadastroChave = '@Url.Action("CadastroChave","Usuario")';
+        var urlPostCadastroChave = '@Url.Action("CadastroChave","Usuario")';
+    </script>
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>

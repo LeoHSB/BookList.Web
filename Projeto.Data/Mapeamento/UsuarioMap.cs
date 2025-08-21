@@ -13,6 +13,7 @@ namespace Projeto.Data.Mapping
             Map(u => u.Nome, "Nome").Length(50).Not.Nullable();
             Map(u => u.Email, "Email").Length(254).Not.Nullable().Unique();
             Map(u => u.Senha, "Senha").Length(40).Not.Nullable();
+            Map(u => u.ApiKey, "ApiKey").Length(400).Nullable();
             Map(u => u.DataCadastro, "DataCadastro").Not.Nullable();
             HasMany(u => u.Biblioteca).KeyColumn("IdUsuario").Inverse();
 
