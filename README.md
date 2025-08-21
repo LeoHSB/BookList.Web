@@ -54,6 +54,7 @@ O Visual Studio geralmente restaura os pacotes NuGet automaticamente ao abrir a 
     [Nome] NVARCHAR (50) NOT NULL,
     [Email] NVARCHAR (254) NOT NULL,
     [Senha] NVARCHAR (40) NOT NULL,
+    [ApiKey] NVARCHAR (400) NULL,
     [DataCadastro] DATETIME NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     UNIQUE NONCLUSTERED ([Email] ASC)
@@ -79,12 +80,13 @@ O Visual Studio geralmente restaura os pacotes NuGet automaticamente ao abrir a 
     
 9. Rode a consulta
    
-### 5. Limpar e recompilar
+### 5. Web.config, Limpar e recompilar
 
-1. No gerenciador de Soluções clique com o botão direito no projeto e escolha a opção Limpar Solução
-2. No gerenciador de Soluções clique com o botão direito no projeto e escolha a opção Recompilar solução
+1. No Web.config preencha a código <add key="ChaveSecretaAES" value="ColoqueAquiSuaChaveAES" /> com sua chave AES, assim será possível criptografar e descriptografar a chave API so usuário
+3. No gerenciador de Soluções clique com o botão direito no projeto e escolha a opção Limpar Solução
+4. No gerenciador de Soluções clique com o botão direito no projeto e escolha a opção Recompilar solução
 
-
+(Toda vez que for commitar o projeto, exlcua a sua chave AES, ela é secreta)
 
 # Guia de Commit
 
