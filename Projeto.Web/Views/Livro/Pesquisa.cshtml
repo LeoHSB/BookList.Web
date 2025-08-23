@@ -2,7 +2,7 @@
     ViewBag.Title = "Pesquisar Livros";
     Layout = "~/Views/Shared/_LayoutLogado.cshtml";
 }
-
+<link href="~/Content/modal-biblioteca.css" rel="stylesheet" />
 <div class="search-bar">
     <h2 style="text-align:center">Pesquisar Livros</h2>
 
@@ -14,13 +14,12 @@
 
         if (ViewBag.Mensagem != null)
         {
-            <div class="alert alert-warning text-center mt-2">
+            <div class="alert mensagem-personalizada text-center mt-2">
                 @ViewBag.Mensagem
             </div>
         }
-
-        <div style="text-align:center">
-            <button type="submit" class="btn btn-primary mt-2">Pesquisar</button>
+        <div style="text-align:center; margin-top:10px;">
+            <button type="submit" class="botao">Pesquisar</button>
         </div>
     }
 </div>
