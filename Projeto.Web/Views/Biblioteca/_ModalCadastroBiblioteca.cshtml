@@ -1,33 +1,34 @@
 ﻿@model Projeto.Web.Models.BibliotecaModelCadastro
 
-<div class="modal fade" id="modalCadastroBiblioteca" tabindex="-1" role="dialog" aria-labelledby="modalCadastroBibliotecaLabel" aria-hidden="true">
+<link href="~/Content/modal-biblioteca.css" rel="stylesheet" />
+
+<div class="modal" id="modalCadastroBiblioteca" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content p-4">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCadastroBibliotecaLabel">Nova Biblioteca</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                <h5 class="modal-title" style="color:white">Cadastrar Biblioteca</h5>
             </div>
 
-            @using (Html.BeginForm("CadastrarBibliotecaAjax", "Biblioteca", FormMethod.Post, new { @id = "formCadastroBiblioteca", @class = "ajax-form" }))
-            {
-                <div class="modal-body">
-                    <div id="mensagemModal" class="alert" style="display: none;"></div>
+            <div class="modal-body">
+                <div id="mensagemModal" class="alert mt-2" style="display:none"></div>
 
+                @using (Html.BeginForm("CadastrarBibliotecaAjax", "Biblioteca", FormMethod.Post, new { id = "formCadastroBiblioteca", @class = "ajax-form" }))
+                {
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Nome, new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", @placeholder = "Digite o nome da biblioteca" })
+                        @Html.LabelFor(m => m.Nome, "Nome da Biblioteca")
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", placeholder = "Digite o nome da biblioteca", id = "NomeBiblioteca" })
                         @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
                     </div>
-                </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="botao" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="botao" id="btnSalvarBiblioteca">
-                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                        Salvar
-                    </button>
-                </div>
-            }
+                    <div class="form-group mt-3 d-flex justify-content-end gap-2">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="btnSalvarBiblioteca">
+                            <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            Salvar
+                        </button>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </div>

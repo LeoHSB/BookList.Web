@@ -156,6 +156,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\biblioteca-consulta-estilo.css" />
+    <Content Include="Content\modal-biblioteca.css" />
     <Content Include="Content\modal-chave.css" />
     <Content Include="Content\pesquisa-estilo.css" />
     <Content Include="Content\login-cadastro.css" />

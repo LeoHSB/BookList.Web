@@ -154,32 +154,3 @@
     .botao:active {
         color: white;
     }
-
-.modal-content {
-    background-color: #D4C1A9;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.modal-header {
-    background-color: #D4C1A9;
-    color: white;
-}
-
-.modal-body {
-    padding: 20px 25px;
-    text-align: left;
-}
-
-.modal-footer {
-    background-color: #D4C1A9;
-    padding: 15px 25px;
-}
-
-.top-buttons {
-    display: flex;
-    justify-content: flex-end; 
-    gap: 15px; 
-    align-items: center; 
-    margin-right: 20px; 
-}
